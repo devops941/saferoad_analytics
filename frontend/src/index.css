@@ -1,5 +1,6 @@
 :root {
   --primary-blue: #1e40af;
+  --primary-hover: #1d4ed8;
   --secondary-blue: #3b82f6;
   --bg-light: #f8fafc;
   --card-bg: #ffffff;
@@ -14,4 +15,62 @@ body {
   background-color: var(--bg-light);
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Sidebar Custom Styling */
+@media (max-width: 991.98px) {
+  .sidebar-container {
+    transform: translateX(-100%);
+  }
+  .sidebar-container.show {
+    transform: translateX(0);
+  }
+}
+
+.active-nav-link {
+  background-color: #eff6ff !important;
+  color: #1e40af !important;
+  border-left: 4px solid #1e40af;
+}
+
+.hover-nav-link:hover {
+  background-color: #f1f5f9;
+  color: #0f172a !important;
+}
+
+/* Cards & Charts */
+.kpi-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+}
+
+.analytics-card {
+  background-color: var(--card-bg);
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.top-nav {
+  z-index: 1030;
+}
+
+/* Table styles */
+.custom-table th {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  background-color: #f8fafc;
+}
+
+.custom-table td {
+  font-size: 0.875rem;
+  vertical-align: middle;
 }

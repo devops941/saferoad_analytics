@@ -1,18 +1,32 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import DashboardPage from './pages/DashboardPage.jsx';
+import TrendsPage from './pages/TrendsPage.jsx';
+import SeverityPage from './pages/SeverityPage.jsx';
+import RoadAnalysisPage from './pages/RoadAnalysisPage.jsx';
+import VehicleAnalysisPage from './pages/VehicleAnalysisPage.jsx';
+import HitAndRunPage from './pages/HitAndRunPage.jsx';
+import DataExplorerPage from './pages/DataExplorerPage.jsx';
+import ReportsPage from './pages/ReportsPage.jsx';
 
 function App() {
   return (
-    <div className="container py-5">
-      <div className="card shadow-sm border-0 p-4">
-        <h1 className="h3 text-primary mb-3">SafeRoad Analytics</h1>
-        <p className="text-secondary">
-          Road Accident Data Exploration and Severity Comparison for Madurai District, Tamil Nadu.
-        </p>
-        <div className="alert alert-info">
-          Phase 1 Initial Setup Completed. Ready for Phase 2 implementation.
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="trends" element={<TrendsPage />} />
+          <Route path="severity" element={<SeverityPage />} />
+          <Route path="roads" element={<RoadAnalysisPage />} />
+          <Route path="vehicles" element={<VehicleAnalysisPage />} />
+          <Route path="hit-and-run" element={<HitAndRunPage />} />
+          <Route path="explorer" element={<DataExplorerPage />} />
+          <Route path="reports" element={<ReportsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
