@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import PROJECT_NAME, API_V1_PREFIX, CORS_ORIGINS
@@ -26,10 +27,14 @@ def root():
     return {
         "project": PROJECT_NAME,
         "district": "Madurai District, Tamil Nadu, India",
+        "status": "operational",
         "docs_url": "/docs",
         "api_v1": f"{API_V1_PREFIX}/health"
     }
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    port = int(os.getenv("PORT", 8000))
+    host = os.getenv("HOST", "0.0.0.0")
+    reload = os.getenv("ENVIRONMENT", "development") != "production"
+    uvicorn.run("main:app", host=host, port=port, reload=reload)

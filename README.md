@@ -11,12 +11,12 @@ A professional, descriptive data analytics web application specifically analyzin
 
 SafeRoad Analytics provides evidence-based descriptive insights into road safety dynamics in Madurai District, Tamil Nadu. The platform bridges administrative reporting with actionable visual analytics, covering multi-year accident trends, crash severity distributions, road infrastructure classifications, vehicular vulnerability profiles, and rural vs. urban hit-and-run dynamics.
 
-### Key Objectives
-- **Historical Accident Exploration**: Explore crash counts, casualty impacts, and annual trend trajectories for Madurai District.
-- **Severity Comparison**: Evaluate crash lethality rates (Fatal, Grievous Injury, Minor Injury, Non-Injury) using standard Ministry of Road Transport and Highways (MoRTH) definitions.
-- **Infrastructure Risk**: Analyze accident and fatality distribution across National Highways (NHAI & State PWD), State Highways, Major District Roads, and Rural/Village roads.
-- **Vehicular Vulnerability**: Compare vulnerability shares across Two-Wheelers, LMVs, Heavy Trucks, Buses, and Auto-Rickshaws.
-- **Jurisdictional Independence**: Distinguish between Madurai District Police (Rural) and Madurai City Police Commissionerate reporting.
+### Key Analytical Pillars
+- **Multi-Year Trends (2021–2024)**: Explores crash counts, casualty impacts, and annual trend trajectories for Madurai District compared against Tamil Nadu state benchmarks.
+- **Accident Severity Classification**: Evaluates crash lethality rates (Fatal, Grievous Injury, Minor Injury, Non-Injury) using standard Ministry of Road Transport and Highways (MoRTH) definitions.
+- **Infrastructure Risk**: Analyzes accident and fatality distributions across National Highways (NHAI & State PWD), State Highways, Major District Roads, and Rural/Village roads.
+- **Vehicular Vulnerability**: Compares vulnerability shares across Two-Wheelers, LMVs, Heavy Trucks, Buses, and Auto-Rickshaws.
+- **Jurisdictional Independence**: Distinguishes between Madurai District Police (Rural) and Madurai City Police Commissionerate reporting.
 - **Executive Audit Reporting**: One-click generation and streaming of formal PDF audit reports via ReportLab.
 
 ---
@@ -29,15 +29,15 @@ SafeRoad Analytics provides evidence-based descriptive insights into road safety
 - **UI & Layout**: React-Bootstrap, Bootstrap 5.3, Bootstrap Icons
 - **Data Visualization**: Recharts (v2.15)
 - **HTTP Client**: Axios (v1.7)
-- **Theme**: Crisp, modern light-theme analytics layout (`#ffffff` card background, `#1e40af` primary blue, responsive sidebar)
+- **Deployment Platform**: Vercel (SPA with `vercel.json` rewrite routing)
 
 ### Backend
 - **Framework**: Python 3.12, FastAPI (v0.115)
-- **Server**: Uvicorn (ASGI)
+- **Server**: Uvicorn (ASGI) / Gunicorn
 - **Data Engine**: Pandas (v2.2), NumPy (v2.2)
 - **Schema Validation**: Pydantic (v2.10)
 - **Report Generation**: ReportLab (v4.2)
-- **Data Architecture**: In-memory cached CSV processing (Read-only data access layer)
+- **Deployment Platform**: Render (`render.yaml` blueprint included)
 
 ---
 
@@ -49,7 +49,7 @@ saferoad_analytics/
 │   ├── app/
 │   │   ├── api/
 │   │   │   ├── routes/
-│   │   │   │   ├── __init__.py           # Sub-route bundler
+│   │   │   │   ├── __init__.py           # Sub-route exports
 │   │   │   │   ├── dashboard.py          # /dashboard/kpis, /dashboard/summary
 │   │   │   │   ├── trends.py             # /trends/year-wise, /trends/districts-comparison
 │   │   │   │   ├── severity.py           # /severity/breakdown, /severity/casualty-impact
@@ -60,23 +60,23 @@ saferoad_analytics/
 │   │   │   └── endpoints.py              # Main router uniting routes + /health & /datasets/*
 │   │   ├── core/
 │   │   │   ├── __init__.py
-│   │   │   └── config.py                 # Absolute directory paths, CORS origins & app settings
+│   │   │   └── config.py                 # Platform-independent paths & dynamic CORS
 │   │   ├── services/
 │   │   │   ├── __init__.py
-│   │   │   ├── data_loader.py            # Pandas caching & safe data access singleton
-│   │   │   ├── data_validation.py        # Cross-table arithmetic verification & health checks
+│   │   │   ├── data_loader.py            # Safe Pandas caching singleton
+│   │   │   ├── data_validation.py        # Cross-table verification & health checks
 │   │   │   ├── analytics_service.py      # Analytical calculation engine for Madurai
-│   │   │   └── report_service.py         # ReportLab executive PDF generation service
+│   │   │   └── report_service.py         # ReportLab executive PDF generator
 │   │   ├── schemas/
 │   │   │   ├── __init__.py
-│   │   │   ├── dashboard.py              # Pydantic models for KPIs and summary cards
-│   │   │   └── analytics.py              # Pydantic models for trends, severity, roads, vehicles
+│   │   │   ├── dashboard.py              # Pydantic schemas for KPIs
+│   │   │   └── analytics.py              # Pydantic schemas for trends, severity, roads
 │   │   └── utils/
 │   │       ├── __init__.py
-│   │       ├── constants.py              # Category lists, colors, labels, and jurisdiction metadata
-│   │       └── helpers.py                # Safe type conversion, rate & percentage change calculators
+│   │       ├── constants.py              # Standard labels, colors, and jurisdiction metadata
+│   │       └── helpers.py                # Safe type conversion, rate & percentage helpers
 │   ├── data/                             # 10 verified official CSV datasets
-│   │   ├── raw/                          # Untouched raw source copies
+│   │   ├── raw/                          # Untouched raw source files
 │   │   │   ├── d23e7ba9-6a60-41db-b37b-62413cc72365.csv
 │   │   │   └── d272a39c-50fd-4bf5-bce2-51d5f12c91fc.csv
 │   │   ├── madurai_accident_severity_2024.csv
@@ -90,7 +90,7 @@ saferoad_analytics/
 │   │   ├── tamilnadu_road_wise_accidents_fatalities_2025_q1.csv
 │   │   └── tamilnadu_vehicle_wise_accidents_fatalities_2025_q1.csv
 │   ├── main.py                           # FastAPI application entrypoint
-│   └── requirements.txt                  # Python dependencies
+│   └── requirements.txt                  # Python production dependencies
 ├── frontend/
 │   ├── src/
 │   │   ├── components/                   # Layout, Sidebar, Header, KPICard, Alert widgets
@@ -102,7 +102,9 @@ saferoad_analytics/
 │   │   └── main.jsx                      # React entrypoint
 │   ├── index.html
 │   ├── package.json
-│   └── vite.config.js
+│   ├── vercel.json                       # Vercel SPA client routing configuration
+│   └── vite.config.js                    # Optimized Vite build with manual chunks
+├── render.yaml                           # Render Blueprint for automated backend deployment
 ├── .gitignore
 └── README.md
 ```
@@ -128,43 +130,130 @@ All datasets originate strictly from official publications of the **State Crime 
 
 ---
 
-## 5. Installation & Run Instructions
+## 5. Local Development Instructions
 
-### Prerequisites
-- **Python**: Version 3.10+ (Tested on Python 3.12.4)
-- **Node.js**: Version 18+ (Tested on Node v24.21.0, npm 11.19.0)
-
-### Backend Setup & Execution
+### Local Backend Run
 ```powershell
-# 1. Navigate to backend directory
 cd d:\collegeprojects\saferoad_analytics\backend
-
-# 2. Install Python dependencies
 pip install -r requirements.txt
-
-# 3. Launch FastAPI server
 python main.py
 ```
-- **Backend Service**: `http://127.0.0.1:8000`
-- **Interactive Swagger Documentation**: `http://127.0.0.1:8000/docs`
-- **ReDoc Documentation**: `http://127.0.0.1:8000/redoc`
+- **Service URL**: `http://127.0.0.1:8000`
+- **Swagger Documentation**: `http://127.0.0.1:8000/docs`
 
-### Frontend Setup & Execution
+### Local Frontend Run
 ```powershell
-# 1. Navigate to frontend directory
 cd d:\collegeprojects\saferoad_analytics\frontend
-
-# 2. Install Node dependencies
 npm install
-
-# 3. Launch Vite development server
 npm run dev
 ```
-- **Frontend Dashboard**: `http://localhost:5173`
+- **Dashboard URL**: `http://localhost:5173`
 
 ---
 
-## 6. Key Data Integrity Rules Observed
+## 6. Production Deployment Guide (Step-by-Step)
+
+### Step 6.1: Push Repository to GitHub
+Create a new private or public repository on GitHub (e.g. `saferoad-analytics`):
+```powershell
+cd d:\collegeprojects\saferoad_analytics
+git remote add origin https://github.com/<your-username>/saferoad-analytics.git
+git branch -M main
+git push -u origin main
+```
+
+---
+
+### Step 6.2: Backend Deployment on Render
+
+Render hosts the FastAPI application using the preconfigured `render.yaml` or through manual service setup:
+
+#### Option A: Using Render Blueprint (Recommended)
+1. Log in to [Render](https://render.com).
+2. Click **New +** $\rightarrow$ **Blueprint**.
+3. Connect your GitHub repository `saferoad-analytics`.
+4. Render will auto-detect `render.yaml` and configure:
+   - **Service Name**: `saferoad-analytics-backend`
+   - **Root Directory**: `backend`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+5. Click **Apply**. Once built, note your live backend URL (e.g., `https://saferoad-analytics-backend.onrender.com`).
+
+#### Option B: Manual Web Service Setup on Render
+1. Click **New +** $\rightarrow$ **Web Service**.
+2. Select your repository `saferoad-analytics`.
+3. Set the following parameters:
+   - **Name**: `saferoad-analytics-backend`
+   - **Region**: Singapore or nearest
+   - **Branch**: `main`
+   - **Root Directory**: `backend`
+   - **Runtime**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. In **Environment Variables**, add:
+   - `PYTHON_VERSION`: `3.12.4`
+   - `ENVIRONMENT`: `production`
+   - `CORS_ORIGINS`: `*` (or your Vercel frontend URL once deployed)
+5. Click **Create Web Service**.
+
+---
+
+### Step 6.3: Frontend Deployment on Vercel
+
+Vercel hosts the React + Vite single-page application:
+
+1. Log in to [Vercel](https://vercel.com).
+2. Click **Add New...** $\rightarrow$ **Project**.
+3. Import your GitHub repository `saferoad-analytics`.
+4. Configure the Project:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: Click **Edit** and select `frontend`.
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. In **Environment Variables**, add:
+   - `VITE_API_BASE_URL`: `https://saferoad-analytics-backend.onrender.com/api/v1` *(replace with your actual Render URL)*
+6. Click **Deploy**.
+7. Vercel will build and assign your production domain (e.g., `https://saferoad-analytics.vercel.app`).
+8. The included `frontend/vercel.json` ensures that direct navigation and page reloads on routes like `/trends` or `/severity` resolve correctly to `/index.html`.
+
+---
+
+## 7. Production Environment Variables Summary
+
+| Platform | Variable Name | Recommended Value | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Render (Backend)** | `PORT` | `10000` *(Render sets this automatically)* | Port for Uvicorn server |
+| **Render (Backend)** | `ENVIRONMENT` | `production` | Disables hot reload in production |
+| **Render (Backend)** | `PYTHON_VERSION` | `3.12.4` | Ensures compatible Python runtime |
+| **Render (Backend)** | `CORS_ORIGINS` | `*` *(or `https://your-app.vercel.app`)* | Cross-Origin Request allowance |
+| **Vercel (Frontend)**| `VITE_API_BASE_URL` | `https://<render-app>.onrender.com/api/v1` | Points Axios client to Render backend |
+
+---
+
+## 8. Post-Deployment Verification Checklist
+
+Once deployed to Render and Vercel, verify the live installation:
+
+1. **Backend Health Check**:
+   Visit `https://<your-render-url>.onrender.com/api/v1/health`.  
+   Expected JSON response: `{"status": "healthy", "service": "SafeRoad Analytics API", ...}`
+2. **Swagger Documentation**:
+   Visit `https://<your-render-url>.onrender.com/docs`.  
+   Verify that all 15 endpoints are listed and can be tested via Swagger UI.
+3. **Frontend Dashboard Connectivity**:
+   Visit `https://<your-vercel-url>.vercel.app`.  
+   Verify that KPI cards load actual values (`2,497` accidents, `763` deaths).
+4. **Interactive Routing**:
+   Click through all 8 pages (`/`, `/trends`, `/severity`, `/roads`, `/vehicles`, `/hit-and-run`, `/explorer`, `/reports`) to confirm client-side routing.
+5. **PDF Report Streaming**:
+   Navigate to the **Reports** page and click **Download Executive PDF Report**.  
+   Verify that `SafeRoad_Analytics_Madurai_Report.pdf` downloads cleanly and opens with formatted tables.
+6. **Data Explorer Filter & Export**:
+   Navigate to the **Data Explorer** page, filter by district, and click **Export CSV** to verify client-side export.
+
+---
+
+## 9. Key Data Integrity Rules Observed
 
 1. **No Data Fabrication**: Only official government data from SCRB and the Transport Department is loaded. Zero synthetic values or mocked numbers exist.
 2. **Distinct Jurisdictions**: Madurai District (Rural Police) and Madurai City (City Police Commissionerate) have separate administrative boundaries and population denominators. They are kept strictly separate.
@@ -176,7 +265,7 @@ npm run dev
 
 ---
 
-## 7. Project Limitations
+## 10. Project Limitations
 
 1. **Geospatial Granularity**: Official district summary tables do not record micro-location coordinates (latitude/longitude) or GIS geometry. Map overlays and geographic heatmaps are strictly omitted to avoid fabricating coordinates.
 2. **Weather & Environmental Factors**: Source tables do not record precipitation, fog, or road surface condition at the incident level.
