@@ -60,78 +60,90 @@ const SeverityPage = () => {
   return (
     <div className="d-flex flex-column gap-4">
       {/* Period Selection Controls */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div className="executive-banner p-3 p-lg-3.5 d-flex justify-content-between align-items-center flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-danger" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-pie-chart"></i>
+          </div>
           <div>
-            <h3 className="h6 fw-bold text-primary mb-1">Accident Severity & Injury Classification</h3>
-            <p className="text-secondary small mb-0">
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <h2 className="h6 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Accident Severity & Injury Classification
+              </h2>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                MoRTH Standard
+              </span>
+            </div>
+            <p className="text-secondary small mb-0" style={{ fontSize: '0.82rem' }}>
               Analysis of road crashes segmented by injury severity and casualty outcomes in Madurai District.
             </p>
           </div>
-          <div className="btn-group shadow-sm" role="group">
-            <button
-              type="button"
-              className={`btn btn-sm px-3 ${period === '2024' ? 'btn-primary' : 'btn-outline-secondary'}`}
-              onClick={() => setPeriod('2024')}
-            >
-              2024 (Full Year)
-            </button>
-            <button
-              type="button"
-              className={`btn btn-sm px-3 ${period === '2025_q1' ? 'btn-primary' : 'btn-outline-secondary'}`}
-              onClick={() => setPeriod('2025_q1')}
-            >
-              2025 Q1 (Jan–Mar Provisional)
-            </button>
-          </div>
+        </div>
+        <div className="btn-group shadow-sm" role="group">
+          <button
+            type="button"
+            className={`btn btn-sm px-3.5 py-1.5 fw-semibold ${period === '2024' ? 'btn-primary' : 'btn-outline-secondary'}`}
+            style={period === '2024' ? { background: 'linear-gradient(135deg, #0284c7 0%, #2563eb 100%)', border: 'none' } : {}}
+            onClick={() => setPeriod('2024')}
+          >
+            2024 (Full Year)
+          </button>
+          <button
+            type="button"
+            className={`btn btn-sm px-3.5 py-1.5 fw-semibold ${period === '2025_q1' ? 'btn-primary' : 'btn-outline-secondary'}`}
+            style={period === '2025_q1' ? { background: 'linear-gradient(135deg, #0284c7 0%, #2563eb 100%)', border: 'none' } : {}}
+            onClick={() => setPeriod('2025_q1')}
+          >
+            2025 Q1 (Jan–Mar Provisional)
+          </button>
         </div>
       </div>
 
       {/* Summary KPI Highlights */}
-      <div className="row g-3">
+      <div className="row g-3 animate-slide-up delay-1">
         <div className="col-12 col-sm-6 col-xl-3">
-          <div className="card border-0 shadow-sm p-3 bg-white h-100 border-start border-4 border-danger">
-            <span className="text-muted small text-uppercase fw-semibold">Fatal Crashes</span>
-            <h3 className="h4 fw-bold text-dark mt-1 mb-1">
+          <div className="card border-0 shadow-sm p-4 bg-white h-100 border-start border-5 border-danger hover-lift">
+            <span className="text-secondary small text-uppercase fw-bold" style={{ fontSize: '0.72rem' }}>Fatal Crashes</span>
+            <h3 className="h3 fw-bold text-dark mt-1 mb-1">
               {severityData.categories.find((c) => c.category === 'Fatal')?.accidents.toLocaleString()}
             </h3>
-            <span className="text-danger small">
+            <span className="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
               Caused {severityData.total_fatalities} deaths ({severityData.severity_rate}% Severity)
             </span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-xl-3">
-          <div className="card border-0 shadow-sm p-3 bg-white h-100 border-start border-4 border-warning">
-            <span className="text-muted small text-uppercase fw-semibold">Grievous Injuries</span>
+          <div className="card border-0 shadow-sm p-4 bg-white h-100 border-start border-5 border-warning hover-lift">
+            <span className="text-secondary small text-uppercase fw-bold" style={{ fontSize: '0.72rem' }}>Grievous Injuries</span>
             <h3 className="h4 fw-bold text-dark mt-1 mb-1">
               {severityData.categories.find((c) => c.category === 'Grievous_Injury')?.accidents.toLocaleString()}
             </h3>
-            <span className="text-secondary small">
+            <span className="text-secondary small fw-medium">
               Severe injuries needing major hospitalization
             </span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-xl-3">
-          <div className="card border-0 shadow-sm p-3 bg-white h-100 border-start border-4 border-info">
-            <span className="text-muted small text-uppercase fw-semibold">Minor Injuries</span>
+          <div className="card border-0 shadow-sm p-4 bg-white h-100 border-start border-5 border-info hover-lift">
+            <span className="text-secondary small text-uppercase fw-bold" style={{ fontSize: '0.72rem' }}>Minor Injuries</span>
             <h3 className="h4 fw-bold text-dark mt-1 mb-1">
               {severityData.categories.find((c) => c.category === 'Minor_Injury')?.accidents.toLocaleString()}
             </h3>
-            <span className="text-secondary small">
+            <span className="text-secondary small fw-medium">
               Resulted in {severityData.casualty_distribution.minor_injuries} injured persons
             </span>
           </div>
         </div>
 
         <div className="col-12 col-sm-6 col-xl-3">
-          <div className="card border-0 shadow-sm p-3 bg-white h-100 border-start border-4 border-success">
-            <span className="text-muted small text-uppercase fw-semibold">Non-Injury Crashes</span>
+          <div className="card border-0 shadow-sm p-4 bg-white h-100 border-start border-5 border-success hover-lift">
+            <span className="text-secondary small text-uppercase fw-bold" style={{ fontSize: '0.72rem' }}>Non-Injury Crashes</span>
             <h3 className="h4 fw-bold text-dark mt-1 mb-1">
               {severityData.categories.find((c) => c.category === 'Non_Injury')?.accidents.toLocaleString()}
             </h3>
-            <span className="text-secondary small">Property damage only</span>
+            <span className="text-secondary small fw-medium">Property damage only</span>
           </div>
         </div>
       </div>

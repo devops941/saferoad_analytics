@@ -1,0 +1,448 @@
+{
+  "type": "FeatureCollection",
+  "name": "madurai_road_network",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NH-44",
+        "ref": "NH-44",
+        "name": "Srinagar-Kanyakumari Corridor (Madurai Section)",
+        "category": "National Highway (NHAI)",
+        "category_key": "nh_nhai",
+        "official_class": "National Highway",
+        "lanes": "4 to 6 Lanes Divided",
+        "surface": "Asphalt / Bituminous",
+        "speed_limit_kmh": 100,
+        "length_in_district_km": 68.4,
+        "jurisdiction": "NHAI Project Implementation Unit (Madurai)",
+        "verified_corridor": true,
+        "description": "Major North-South spine connecting Dindigul border via Vadipatti, Samayanallur, Madurai West Bypass, Kappalur, Tirumangalam towards Virudhunagar."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.923, 10.158],
+          [77.962, 10.118],
+          [78.005, 10.054],
+          [78.048, 9.982],
+          [78.064, 9.948],
+          [78.061, 9.905],
+          [78.048, 9.852],
+          [78.021, 9.832],
+          [77.994, 9.821],
+          [77.978, 9.775],
+          [77.965, 9.712],
+          [77.958, 9.664]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NH-744",
+        "ref": "NH-744",
+        "name": "Madurai-Kollam Highway (Tirumangalam to T.Kallupatti)",
+        "category": "National Highway (NHAI)",
+        "category_key": "nh_nhai",
+        "official_class": "National Highway",
+        "lanes": "2 to 4 Lanes",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 80,
+        "length_in_district_km": 42.1,
+        "jurisdiction": "NHAI / State PWD NH Wing",
+        "verified_corridor": true,
+        "description": "Critical southwest corridor connecting Tirumangalam junction, T.Kallupatti, continuing to Srivilliputhur and Kerala border."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.994, 9.821],
+          [77.942, 9.782],
+          [77.886, 9.748],
+          [77.834, 9.715],
+          [77.781, 9.672],
+          [77.732, 9.615],
+          [77.698, 9.574]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NH-38",
+        "ref": "NH-38",
+        "name": "Trichy-Madurai-Tuticorin Highway",
+        "category": "National Highway (NHAI)",
+        "category_key": "nh_nhai",
+        "official_class": "National Highway",
+        "lanes": "4 Lanes Divided",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 100,
+        "length_in_district_km": 74.2,
+        "jurisdiction": "NHAI PIU Madurai",
+        "verified_corridor": true,
+        "description": "High-speed economic corridor entering via Kottampatti, Melur, Othakadai, passing through outer Madurai towards Aruppukottai & Tuticorin port."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.435, 10.312],
+          [78.408, 10.264],
+          [78.368, 10.158],
+          [78.332, 10.028],
+          [78.258, 9.992],
+          [78.182, 9.961],
+          [78.162, 9.914],
+          [78.148, 9.852],
+          [78.136, 9.784],
+          [78.128, 9.712]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "NH-85",
+        "ref": "NH-85",
+        "name": "Kochi-Madurai-Dhanushkodi Highway",
+        "category": "National Highway (State PWD)",
+        "category_key": "nh_state_pwd",
+        "official_class": "National Highway (State PWD Wing)",
+        "lanes": "2 to 4 Lanes",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 80,
+        "length_in_district_km": 62.5,
+        "jurisdiction": "Tamil Nadu State Highways NH Wing",
+        "verified_corridor": true,
+        "description": "East-West arterial axis linking Theni/Bodi ghats through Usilampatti, Chekkanurani, Madurai City centre towards Thirupuvanam & Rameswaram."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.712, 9.985],
+          [77.788, 9.972],
+          [77.882, 9.964],
+          [77.958, 9.951],
+          [78.048, 9.938],
+          [78.122, 9.925],
+          [78.168, 9.902],
+          [78.224, 9.882],
+          [78.288, 9.864]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SH-72",
+        "ref": "SH-72",
+        "name": "Madurai-Natham Highway (Elevated Corridor Sector)",
+        "category": "State Highway",
+        "category_key": "state_highway",
+        "official_class": "State Highway",
+        "lanes": "2 to 4 Lanes (Elevated Section)",
+        "surface": "Bituminous / Concrete",
+        "speed_limit_kmh": 80,
+        "length_in_district_km": 36.8,
+        "jurisdiction": "Highways & Minor Ports Department, Tamil Nadu",
+        "verified_corridor": true,
+        "description": "Major northern high-density connection from Goripalayam through Chokkikulam, Iyer Bungalow, Oomachikulam, towards Natham & Trichy."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.132, 9.938],
+          [78.141, 9.972],
+          [78.156, 10.024],
+          [78.184, 10.092],
+          [78.215, 10.158],
+          [78.242, 10.235]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SH-72A",
+        "ref": "SH-72A",
+        "name": "Madurai Ring Road (Tollway)",
+        "category": "State Highway",
+        "category_key": "state_highway",
+        "official_class": "State Highway (Toll Road)",
+        "lanes": "4 Lanes Divided",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 80,
+        "length_in_district_km": 27.2,
+        "jurisdiction": "Tamil Nadu Road Infrastructure Development Corporation (TNRIDC)",
+        "verified_corridor": true,
+        "description": "Heavy bypass orbital linking Mattuthavani bus hub, Vandiyur lake, Viraganoor lock, Airport junction, terminating at Kappalur NH-44 junction."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.168, 9.948],
+          [78.174, 9.924],
+          [78.164, 9.894],
+          [78.138, 9.868],
+          [78.102, 9.851],
+          [78.072, 9.845],
+          [78.048, 9.852]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SH-33",
+        "ref": "SH-33",
+        "name": "Madurai-Sivagangai-Thondi Road",
+        "category": "State Highway",
+        "category_key": "state_highway",
+        "official_class": "State Highway",
+        "lanes": "2 Lanes Undivided",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 70,
+        "length_in_district_km": 28.5,
+        "jurisdiction": "Highways & Minor Ports Department, Tamil Nadu",
+        "verified_corridor": true,
+        "description": "Crucial inter-district two-lane corridor from Goripalayam through Sakkimangalam, Poovanthi into Sivagangai district."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.138, 9.932],
+          [78.182, 9.914],
+          [78.234, 9.896],
+          [78.285, 9.878],
+          [78.345, 9.865]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SH-95",
+        "ref": "SH-95",
+        "name": "Usilampatti-Sedapatti-Peraiyur Highway",
+        "category": "State Highway",
+        "category_key": "state_highway",
+        "official_class": "State Highway",
+        "lanes": "2 Lanes Undivided",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 65,
+        "length_in_district_km": 34.6,
+        "jurisdiction": "Highways & Minor Ports Department, Tamil Nadu",
+        "verified_corridor": true,
+        "description": "Western agricultural transit spine connecting Usilampatti taluk with Sedapatti and Peraiyur."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.788, 9.972],
+          [77.778, 9.915],
+          [77.768, 9.845],
+          [77.774, 9.778],
+          [77.785, 9.712]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDR-12",
+        "ref": "MDR-12",
+        "name": "Madurai-Alanganallur-Palamedu Road",
+        "category": "Major District Road",
+        "category_key": "district_road",
+        "official_class": "Major District Road",
+        "lanes": "2 Lanes Intermediate",
+        "surface": "Bituminous",
+        "speed_limit_kmh": 60,
+        "length_in_district_km": 24.8,
+        "jurisdiction": "Highways Department (Dist. Roads Division)",
+        "verified_corridor": true,
+        "description": "Connecting Madurai urban north with the historic cattle-rearing and agricultural centers of Alanganallur and Palamedu."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.118, 9.962],
+          [78.102, 9.995],
+          [78.092, 10.045],
+          [78.108, 10.112],
+          [78.125, 10.165]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDR-503",
+        "ref": "MDR-503",
+        "name": "Vadipatti-Sholavandan-Kuruvithurai Road",
+        "category": "Major District Road",
+        "category_key": "district_road",
+        "official_class": "Major District Road",
+        "lanes": "2 Lanes",
+        "surface": "Asphalt",
+        "speed_limit_kmh": 50,
+        "length_in_district_km": 19.5,
+        "jurisdiction": "Highways Department (Dist. Roads Division)",
+        "verified_corridor": true,
+        "description": "Vaigai riverbank agrarian belt linking Vadipatti NH junction through Sholavandan town to Samayanallur."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.962, 10.118],
+          [77.988, 10.075],
+          [78.012, 10.024],
+          [78.048, 9.982]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDR-271",
+        "ref": "MDR-271",
+        "name": "Melur-Thiruvathavur Road",
+        "category": "Major District Road",
+        "category_key": "district_road",
+        "official_class": "Major District Road",
+        "lanes": "2 Lanes",
+        "surface": "Bituminous",
+        "speed_limit_kmh": 60,
+        "length_in_district_km": 16.2,
+        "jurisdiction": "Highways Department (Dist. Roads Division)",
+        "verified_corridor": true,
+        "description": "Connecting Melur commercial hub to the pilgrimage site of Thiruvathavur and eastern agrarian settlements."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.332, 10.028],
+          [78.318, 9.995],
+          [78.298, 9.965],
+          [78.258, 9.948]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "MDR-498",
+        "ref": "MDR-498",
+        "name": "Tirumangalam-Usilampatti Road",
+        "category": "Major District Road",
+        "category_key": "district_road",
+        "official_class": "Major District Road",
+        "lanes": "2 Lanes",
+        "surface": "Bituminous",
+        "speed_limit_kmh": 60,
+        "length_in_district_km": 28.4,
+        "jurisdiction": "Highways Department (Dist. Roads Division)",
+        "verified_corridor": true,
+        "description": "Direct cross-taluk connecting route between Tirumangalam and Usilampatti via Sindhupatti."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.994, 9.821],
+          [77.945, 9.858],
+          [77.882, 9.912],
+          [77.824, 9.954],
+          [77.788, 9.972]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "VR-101",
+        "ref": "VR-101",
+        "name": "Alanganallur-Kottaiyur Rural Connector",
+        "category": "Village Road",
+        "category_key": "village_road",
+        "official_class": "Village Road / Rural Link",
+        "lanes": "Single Lane Paved",
+        "surface": "Bituminous / WBM",
+        "speed_limit_kmh": 40,
+        "length_in_district_km": 8.7,
+        "jurisdiction": "District Rural Development Agency (DRDA) / Panchayat",
+        "verified_corridor": true,
+        "description": "Panchayat village connectivity corridor serving hamlet clusters northwest of Alanganallur."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.092, 10.045],
+          [78.064, 10.068],
+          [78.038, 10.082],
+          [78.015, 10.098]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "VR-102",
+        "ref": "VR-102",
+        "name": "Chekkanurani-Valandur Rural Link",
+        "category": "Village Road",
+        "category_key": "village_road",
+        "official_class": "Village Road / Rural Link",
+        "lanes": "Single Lane Paved",
+        "surface": "Bituminous",
+        "speed_limit_kmh": 40,
+        "length_in_district_km": 11.3,
+        "jurisdiction": "District Rural Development Agency (DRDA) / Panchayat",
+        "verified_corridor": true,
+        "description": "Rural transit road connecting agrarian villages between Chekkanurani and Valandur."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [77.958, 9.951],
+          [77.932, 9.928],
+          [77.904, 9.912],
+          [77.872, 9.895]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "VR-103",
+        "ref": "VR-103",
+        "name": "Kottampatti-Karungalakudi Village Road",
+        "category": "Other Roads",
+        "category_key": "other_roads",
+        "official_class": "Other Urban / Rural Road",
+        "lanes": "Single Lane Paved",
+        "surface": "Paved",
+        "speed_limit_kmh": 40,
+        "length_in_district_km": 9.4,
+        "jurisdiction": "Local Town Panchayat / Rural Road Wing",
+        "verified_corridor": true,
+        "description": "Far northeastern village connection linking agrarian habitations near Trichy district border."
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [78.435, 10.312],
+          [78.412, 10.285],
+          [78.385, 10.254],
+          [78.358, 10.224]
+        ]
+      }
+    }
+  ]
+}

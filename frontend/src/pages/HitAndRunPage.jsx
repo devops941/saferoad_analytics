@@ -52,23 +52,33 @@ const HitAndRunPage = () => {
 
   return (
     <div className="d-flex flex-column gap-4">
-      {/* Information Header */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      {/* Executive Scope Header */}
+      <div className="executive-banner p-3 p-lg-3.5 d-flex justify-content-between align-items-center flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-primary" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-shield-exclamation"></i>
+          </div>
           <div>
-            <h3 className="h6 fw-bold text-primary mb-1">Hit-and-Run Comparative Analysis</h3>
-            <p className="text-secondary small mb-0">
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <h2 className="h6 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Hit-and-Run Jurisdictional Comparative Analysis
+              </h2>
+              <span className="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                Jurisdictional Segregation
+              </span>
+            </div>
+            <p className="text-secondary small mb-0" style={{ fontSize: '0.82rem' }}>
               Disaggregated evaluation of hit-and-run incidents between <b>Madurai District Police (Rural)</b> and <b>Madurai City Police Commissionerate</b>.
             </p>
           </div>
-          <span className="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2">
-            Independent Police Jurisdictions
-          </span>
         </div>
+        <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+          <i className="bi bi-shield-lock text-primary me-1"></i> Independent Police Jurisdictions
+        </span>
       </div>
 
       {/* Strict Jurisdictional Rule Callout */}
-      <div className="alert alert-warning border border-warning-subtle d-flex align-items-start gap-2 p-3 rounded-3 mb-0">
+      <div className="alert alert-warning border border-warning-subtle d-flex align-items-start gap-2 p-3 rounded-3 mb-0 animate-slide-up delay-1">
         <i className="bi bi-shield-exclamation text-warning fs-5 mt-1"></i>
         <div className="small text-secondary">
           <strong className="text-dark d-block mb-1">Strict Statistical Separation Rule:</strong>
@@ -77,10 +87,10 @@ const HitAndRunPage = () => {
       </div>
 
       {/* Side-by-Side Comparison Cards */}
-      <div className="row g-4">
+      <div className="row g-4 animate-slide-up delay-2">
         {hnrData.comparison.map((item) => (
           <div className="col-12 col-lg-6" key={item.id}>
-            <div className="card h-100 border-0 shadow-sm p-3 p-lg-4 bg-white">
+            <div className="card h-100 border-0 shadow-sm p-3.5 p-lg-4 bg-white hover-lift">
               <div className="d-flex justify-content-between align-items-start mb-3">
                 <div>
                   <span className="badge bg-light text-secondary border mb-1">{item.jurisdiction_type}</span>

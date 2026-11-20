@@ -14,6 +14,17 @@ import {
   Cell,
 } from 'recharts';
 
+const formatRoadLabel = (label) => {
+  if (!label) return '';
+  if (label.includes('NHAI')) return 'NHAI NH';
+  if (label.includes('State PWD')) return 'State PWD NH';
+  if (label.includes('State Highway')) return 'State Highway';
+  if (label.includes('Major District')) return 'Major District (MDR)';
+  if (label.includes('Village')) return 'Village Road';
+  if (label.includes('Other')) return 'Other Roads';
+  return label;
+};
+
 const RoadAnalysisPage = () => {
   const [roadData, setRoadData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -43,38 +54,48 @@ const RoadAnalysisPage = () => {
 
   return (
     <div className="d-flex flex-column gap-4">
-      {/* Information Header */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      {/* Executive Scope Header */}
+      <div className="executive-banner p-3 p-lg-3.5 d-flex justify-content-between align-items-center flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-warning" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-signpost-2"></i>
+          </div>
           <div>
-            <h3 className="h6 fw-bold text-primary mb-1">Road Infrastructure Category Risk Analysis</h3>
-            <p className="text-secondary small mb-0">
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <h2 className="h6 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Road Infrastructure Category Risk Analysis
+              </h2>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                Corridor Risk
+              </span>
+            </div>
+            <p className="text-secondary small mb-0" style={{ fontSize: '0.82rem' }}>
               Examining accident frequency and fatality lethality rates across road classifications in Madurai District (NHAI, State PWD NH, SH, MDR, Village Roads).
             </p>
           </div>
-          <span className="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-3 py-2">
-            Reporting Period: {roadData.period}
-          </span>
         </div>
+        <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+          <i className="bi bi-clock-history text-primary me-1"></i> Period: {roadData.period}
+        </span>
       </div>
 
       {/* Highest Risk Road Callout */}
       {roadData.highest_risk_road && (
-        <div className="card border-0 shadow-sm border-start border-4 border-danger p-3 bg-white">
+        <div className="card border-0 shadow-sm border-start border-5 border-danger p-4 bg-white hover-lift animate-slide-up delay-1">
           <div className="d-flex align-items-center justify-content-between flex-wrap gap-2">
             <div className="d-flex align-items-center gap-3">
-              <div className="bg-danger-subtle text-danger p-2 rounded-3">
-                <i className="bi bi-signpost-split fs-4"></i>
+              <div className="icon-badge icon-badge-danger" style={{ width: '42px', height: '42px' }}>
+                <i className="bi bi-signpost-split"></i>
               </div>
               <div>
-                <span className="text-muted small text-uppercase fw-semibold">Highest Crash & Fatality Road Corridor</span>
+                <span className="text-secondary small text-uppercase fw-bold" style={{ fontSize: '0.72rem' }}>Highest Crash & Fatality Road Corridor</span>
                 <h4 className="h5 fw-bold text-danger mb-0">{roadData.highest_risk_road.label}</h4>
               </div>
             </div>
             <div className="d-flex gap-4">
               <div>
                 <span className="text-muted small d-block">Q1 Accidents</span>
-                <span className="h6 fw-bold mb-0">{roadData.highest_risk_road.accidents} ({roadData.highest_risk_road.accidents_share}%)</span>
+                <span className="h6 fw-bold mb-0 text-dark">{roadData.highest_risk_road.accidents} ({roadData.highest_risk_road.accidents_share}%)</span>
               </div>
               <div>
                 <span className="text-muted small d-block">Q1 Fatalities</span>
@@ -90,32 +111,41 @@ const RoadAnalysisPage = () => {
       )}
 
       {/* Charts Row */}
-      <div className="row g-4">
+      <div className="row g-4 animate-slide-up delay-2">
         {/* Accidents vs. Fatalities by Road Type */}
         <div className="col-12 col-xl-7">
-          <div className="card h-100 border-0 shadow-sm">
-            <div className="card-header bg-white border-bottom py-3">
-              <h4 className="h6 fw-bold mb-0 text-dark">Accident & Fatality Distribution by Road Category</h4>
-              <span className="small text-muted">2025 Q1 Provisional Data (Madurai District)</span>
+          <div className="card h-100 border-0 shadow-sm hover-lift">
+            <div className="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+              <div>
+                <h4 className="h6 fw-bold mb-0 text-dark">Accident & Fatality Distribution by Road Category</h4>
+                <span className="small text-secondary">2025 Q1 Provisional Data (Madurai District)</span>
+              </div>
+              <span className="badge bg-light text-secondary border px-2 py-1 small">Q1 2025</span>
             </div>
             <div className="card-body p-3 p-lg-4">
-              <div style={{ height: '320px', width: '100%' }}>
+              <div style={{ height: '360px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={roadData.categories} margin={{ top: 10, right: 30, left: 10, bottom: 35 }}>
+                  <BarChart data={roadData.categories} margin={{ top: 25, right: 25, left: 5, bottom: 55 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
                     <XAxis
                       dataKey="label"
-                      stroke="#64748b"
-                      tick={{ fontSize: 11 }}
+                      tickFormatter={formatRoadLabel}
+                      stroke="#475569"
+                      tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }}
                       interval={0}
-                      angle={-20}
+                      angle={-15}
                       textAnchor="end"
+                      dy={6}
                     />
-                    <YAxis stroke="#64748b" />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="accidents" name="Total Accidents" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="fatalities" name="Fatalities" fill="#dc2626" radius={[4, 4, 0, 0]} />
+                    <YAxis stroke="#475569" tick={{ fill: '#334155', fontWeight: 600 }} />
+                    <Tooltip
+                      formatter={(value, name) => [value.toLocaleString(), name]}
+                      labelFormatter={(label) => `Road Category: ${label}`}
+                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #cbd5e1', boxShadow: '0 8px 16px rgba(0,0,0,0.08)' }}
+                    />
+                    <Legend verticalAlign="top" align="right" wrapperStyle={{ paddingBottom: '20px' }} />
+                    <Bar dataKey="accidents" name="Total Accidents" fill="#2563eb" radius={[6, 6, 0, 0]} />
+                    <Bar dataKey="fatalities" name="Fatalities" fill="#dc2626" radius={[6, 6, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -125,24 +155,40 @@ const RoadAnalysisPage = () => {
 
         {/* Lethality Rate by Road Type */}
         <div className="col-12 col-xl-5">
-          <div className="card h-100 border-0 shadow-sm">
-            <div className="card-header bg-white border-bottom py-3">
-              <h4 className="h6 fw-bold mb-0 text-dark">Lethality Rate per Road Category (%)</h4>
-              <span className="small text-muted">Deaths per 100 crashes</span>
+          <div className="card h-100 border-0 shadow-sm hover-lift">
+            <div className="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
+              <div>
+                <h4 className="h6 fw-bold mb-0 text-dark">Lethality Rate per Road Category (%)</h4>
+                <span className="small text-secondary">Deaths per 100 crashes</span>
+              </div>
+              <span className="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2 py-0.5" style={{ fontSize: '0.7rem' }}>
+                Lethality Index
+              </span>
             </div>
             <div className="card-body p-3 p-lg-4">
-              <div style={{ height: '320px', width: '100%' }}>
+              <div style={{ height: '360px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={roadData.categories}
                     layout="vertical"
-                    margin={{ top: 10, right: 30, left: 50, bottom: 0 }}
+                    margin={{ top: 20, right: 30, left: 10, bottom: 10 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                    <XAxis type="number" stroke="#64748b" domain={[0, 40]} />
-                    <YAxis dataKey="label" type="category" stroke="#64748b" tick={{ fontSize: 10 }} />
-                    <Tooltip />
-                    <Bar dataKey="lethality_rate" name="Lethality (%)" fill="#ea580c" radius={[0, 4, 4, 0]}>
+                    <XAxis type="number" stroke="#475569" domain={[0, 40]} unit="%" tick={{ fill: '#334155', fontWeight: 600 }} />
+                    <YAxis
+                      dataKey="label"
+                      type="category"
+                      stroke="#475569"
+                      tickFormatter={formatRoadLabel}
+                      width={120}
+                      tick={{ fontSize: 11, fill: '#334155', fontWeight: 600 }}
+                    />
+                    <Tooltip
+                      formatter={(value) => [`${value}%`, 'Lethality Rate']}
+                      labelFormatter={(label) => `Road Category: ${label}`}
+                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #cbd5e1', boxShadow: '0 8px 16px rgba(0,0,0,0.08)' }}
+                    />
+                    <Bar dataKey="lethality_rate" name="Lethality (%)" fill="#ea580c" radius={[0, 6, 6, 0]}>
                       {roadData.categories.map((entry, index) => (
                         <Cell
                           key={`cell-${index}`}

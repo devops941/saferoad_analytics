@@ -9,6 +9,8 @@ from app.api.routes import (
     vehicle_analysis_router,
     hit_and_run_router,
     reports_router,
+    safety_tips_router,
+    gis_router,
 )
 
 router = APIRouter()
@@ -45,3 +47,5 @@ router.include_router(road_analysis_router)
 router.include_router(vehicle_analysis_router)
 router.include_router(hit_and_run_router)
 router.include_router(reports_router)
+router.include_router(safety_tips_router)
+router.include_router(gis_router)

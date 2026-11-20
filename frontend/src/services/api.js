@@ -95,6 +95,28 @@ export const api = {
     });
     return res.data;
   },
+
+  // 9. Citizen Safety Advisories
+  getSafetyTips: async () => {
+    const res = await apiClient.get('/safety-tips/');
+    return res.data;
+  },
+
+  // 10. GIS Road Network Analytics
+  getGISRoadNetwork: async () => {
+    const res = await apiClient.get('/gis/road-network');
+    return res.data;
+  },
+
+  getGISDistrictBoundary: async () => {
+    const res = await apiClient.get('/gis/district-boundary');
+    return res.data;
+  },
+
+  getGISOverview: async () => {
+    const res = await apiClient.get('/gis/overview');
+    return res.data;
+  },
 };
 
 export default api;

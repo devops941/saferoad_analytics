@@ -64,42 +64,52 @@ const TrendsPage = () => {
   return (
     <div className="d-flex flex-column gap-4">
       {/* Overview Info Callout */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div className="executive-banner p-3 p-lg-3.5 d-flex justify-content-between align-items-center flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-cyan" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-graph-up"></i>
+          </div>
           <div>
-            <h3 className="h6 fw-bold text-primary mb-1">Multi-Year Trajectory Analysis (2021 – 2024)</h3>
-            <p className="text-secondary small mb-0">
-              Examining annual changes in road crashes, fatalities, and lethality index in Madurai District compared to Tamil Nadu state averages.
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <h2 className="h6 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Multi-Year Longitudinal Trajectory (2021 – 2024)
+              </h2>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                Annual Series
+              </span>
+            </div>
+            <p className="text-secondary small mb-0" style={{ fontSize: '0.82rem' }}>
+              Tracking annual shifts in road crashes, fatalities, and the lethality index in Madurai District compared to Tamil Nadu state averages.
             </p>
           </div>
-          <span className="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
-            SCRB Official Records
-          </span>
         </div>
+        <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+          <i className="bi bi-shield-check text-success me-1"></i> SCRB Official Records
+        </span>
       </div>
 
       {/* Main Charts Row */}
-      <div className="row g-4">
+      <div className="row g-4 animate-slide-up delay-1">
         {/* Trend of Accidents and Deaths */}
         <div className="col-12 col-xl-6">
-          <div className="card h-100 border-0 shadow-sm">
+          <div className="card h-100 border-0 shadow-sm hover-lift">
             <div className="card-header bg-white border-bottom py-3">
               <h4 className="h6 fw-bold mb-0 text-dark">Accidents vs. Fatalities (2021 – 2024)</h4>
-              <span className="small text-muted">Annual accident and mortality counts</span>
+              <span className="small text-secondary">Annual accident and mortality counts</span>
             </div>
             <div className="card-body p-3 p-lg-4">
               <div style={{ height: '320px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={combinedSeries} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                    <XAxis dataKey="year" stroke="#64748b" />
-                    <YAxis stroke="#64748b" />
+                    <XAxis dataKey="year" stroke="#475569" tick={{ fill: '#334155', fontWeight: 600 }} />
+                    <YAxis stroke="#475569" tick={{ fill: '#334155', fontWeight: 600 }} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0' }}
+                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #cbd5e1', boxShadow: '0 8px 16px rgba(0,0,0,0.08)' }}
                     />
                     <Legend />
-                    <Line type="monotone" dataKey="accidents" name="Accidents" stroke="#1e40af" strokeWidth={3} activeDot={{ r: 7 }} />
-                    <Line type="monotone" dataKey="fatalities" name="Fatalities" stroke="#dc2626" strokeWidth={3} activeDot={{ r: 7 }} />
+                    <Line type="monotone" dataKey="accidents" name="Total Accidents" stroke="#2563eb" strokeWidth={3.5} dot={{ r: 5, fill: '#2563eb', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="fatalities" name="Fatalities" stroke="#dc2626" strokeWidth={3.5} dot={{ r: 5, fill: '#dc2626', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 8 }} />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -109,24 +119,24 @@ const TrendsPage = () => {
 
         {/* Severity Rate Comparison Chart */}
         <div className="col-12 col-xl-6">
-          <div className="card h-100 border-0 shadow-sm">
+          <div className="card h-100 border-0 shadow-sm hover-lift">
             <div className="card-header bg-white border-bottom py-3">
               <h4 className="h6 fw-bold mb-0 text-dark">Severity Rate Comparison (%)</h4>
-              <span className="small text-muted">Deaths per 100 accidents (Madurai vs. Tamil Nadu State Total)</span>
+              <span className="small text-secondary">Deaths per 100 accidents (Madurai vs. Tamil Nadu State Total)</span>
             </div>
             <div className="card-body p-3 p-lg-4">
               <div style={{ height: '320px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={combinedSeries} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                    <XAxis dataKey="year" stroke="#64748b" />
-                    <YAxis stroke="#64748b" domain={[20, 40]} />
+                    <XAxis dataKey="year" stroke="#475569" tick={{ fill: '#334155', fontWeight: 600 }} />
+                    <YAxis stroke="#475569" domain={[20, 40]} tick={{ fill: '#334155', fontWeight: 600 }} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0' }}
+                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #cbd5e1', boxShadow: '0 8px 16px rgba(0,0,0,0.08)' }}
                     />
                     <Legend />
-                    <Line type="monotone" dataKey="severity_rate" name="Madurai Severity %" stroke="#b91c1c" strokeWidth={3} activeDot={{ r: 7 }} />
-                    <Line type="monotone" dataKey="state_severity_rate" name="Tamil Nadu Avg %" stroke="#64748b" strokeWidth={2} strokeDasharray="4 4" />
+                    <Line type="monotone" dataKey="severity_rate" name="Madurai Severity %" stroke="#d97706" strokeWidth={3.5} dot={{ r: 5, fill: '#d97706', strokeWidth: 2, stroke: '#fff' }} activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey="state_severity_rate" name="Tamil Nadu Avg %" stroke="#64748b" strokeWidth={2.5} strokeDasharray="5 5" />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
@@ -136,7 +146,7 @@ const TrendsPage = () => {
       </div>
 
       {/* Multi-Year Data Table */}
-      <div className="card border-0 shadow-sm">
+      <div className="card border-0 shadow-sm hover-lift animate-slide-up delay-2">
         <div className="card-header bg-white border-bottom py-3">
           <h4 className="h6 fw-bold mb-0 text-dark">Multi-Year Annual Metrics Table (Madurai District)</h4>
         </div>
@@ -160,21 +170,21 @@ const TrendsPage = () => {
                   const bench = trends.state_benchmark_series[idx];
                   return (
                     <tr key={row.year}>
-                      <td className="fw-bold">{row.year}</td>
-                      <td>{row.accidents.toLocaleString()}</td>
+                      <td className="fw-bold text-primary">{row.year}</td>
+                      <td className="fw-semibold text-dark">{row.accidents.toLocaleString()}</td>
                       <td>
                         {row.yoy_accident_growth !== null ? (
-                          <span className={`badge ${row.yoy_accident_growth < 0 ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'}`}>
+                          <span className={`badge px-2 py-1 rounded-pill ${row.yoy_accident_growth < 0 ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-danger-subtle text-danger border border-danger-subtle'}`} style={{ fontWeight: 600 }}>
                             {row.yoy_accident_growth > 0 ? `+${row.yoy_accident_growth}%` : `${row.yoy_accident_growth}%`}
                           </span>
                         ) : (
                           <span className="text-muted">-</span>
                         )}
                       </td>
-                      <td className="fw-semibold text-danger">{row.fatalities.toLocaleString()}</td>
+                      <td className="fw-bold text-danger">{row.fatalities.toLocaleString()}</td>
                       <td>
                         {row.yoy_fatality_growth !== null ? (
-                          <span className={`badge ${row.yoy_fatality_growth < 0 ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'}`}>
+                          <span className={`badge px-2 py-1 rounded-pill ${row.yoy_fatality_growth < 0 ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-danger-subtle text-danger border border-danger-subtle'}`} style={{ fontWeight: 600 }}>
                             {row.yoy_fatality_growth > 0 ? `+${row.yoy_fatality_growth}%` : `${row.yoy_fatality_growth}%`}
                           </span>
                         ) : (
@@ -182,8 +192,8 @@ const TrendsPage = () => {
                         )}
                       </td>
                       <td className="fw-bold text-dark">{row.severity_rate}%</td>
-                      <td>{bench?.state_severity_rate}%</td>
-                      <td>{bench?.madurai_accident_share}%</td>
+                      <td className="text-secondary fw-semibold">{bench?.state_severity_rate}%</td>
+                      <td className="text-secondary fw-semibold">{bench?.madurai_accident_share}%</td>
                     </tr>
                   );
                 })}

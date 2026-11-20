@@ -78,18 +78,43 @@ const DataExplorerPage = () => {
 
   return (
     <div className="d-flex flex-column gap-4">
-      {/* Information Header */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      {/* Executive Scope Header */}
+      <div className="executive-banner p-3 p-lg-3.5 d-flex justify-content-between align-items-center flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-success" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-table"></i>
+          </div>
           <div>
-            <h3 className="h6 fw-bold text-primary mb-1">Official Dataset Explorer & Filter Engine</h3>
-            <p className="text-secondary small mb-0">
-              Interactive tabular inspection of all 10 verified road accident and casualty datasets.
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <h2 className="h6 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Official Dataset Explorer & Tabular Query Engine
+              </h2>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                Open Data Sandbox
+              </span>
+            </div>
+            <p className="text-secondary small mb-0" style={{ fontSize: '0.82rem' }}>
+              Interactive tabular inspection and extraction of all 10 verified road accident and casualty datasets.
             </p>
           </div>
-          <span className="badge bg-light text-secondary border px-3 py-2">
-            10 Official Datasets Available
+        </div>
+        <div className="d-flex align-items-center gap-2">
+          <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+            <i className="bi bi-database text-primary me-1"></i> 10 Official Datasets
           </span>
+          <button
+            className="btn btn-sm d-inline-flex align-items-center gap-1.5 shadow-sm px-3 py-1.5 rounded-3 hover-lift text-white"
+            style={{
+              background: 'linear-gradient(135deg, #059669 0%, #10b981 100%)',
+              border: 'none',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+            }}
+            onClick={handleExportCSV}
+            disabled={!explorerData || !explorerData.records || explorerData.records.length === 0}
+          >
+            <i className="bi bi-download"></i> Export CSV
+          </button>
         </div>
       </div>
 
@@ -97,7 +122,7 @@ const DataExplorerPage = () => {
       <UnavailableNotice feature="GPS coordinates, live weather correlations, and hourly time-of-day attributes" />
 
       {/* Filter Toolbar */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
+      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4 hover-lift animate-slide-up delay-1">
         <div className="row g-3 align-items-end">
           {/* Dataset Selector */}
           <div className="col-12 col-md-5">

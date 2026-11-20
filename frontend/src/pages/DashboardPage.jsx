@@ -69,126 +69,151 @@ const DashboardPage = () => {
 
   return (
     <div className="d-flex flex-column gap-4">
-      {/* Scope Disclaimer Banner */}
-      <div className="alert alert-primary bg-primary-subtle border-primary-subtle d-flex align-items-center justify-content-between p-3 rounded-3 mb-0">
-        <div className="d-flex align-items-center gap-2">
-          <i className="bi bi-shield-check fs-4 text-primary"></i>
+      {/* Executive Scope Banner */}
+      <div className="executive-banner p-3 p-lg-3.5 d-flex align-items-center justify-content-between flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-blue" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-shield-check"></i>
+          </div>
           <div>
-            <span className="fw-bold text-primary">Official Road Safety Intelligence Dashboard</span>
-            <div className="small text-secondary">
-              Descriptive historical analytics for <b>Madurai District, Tamil Nadu</b>. Source: State Crime Records Bureau (SCRB) & Commissionerate of Transport.
+            <div className="d-flex align-items-center flex-wrap gap-2">
+              <span className="fw-bold text-dark" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Madurai Road Safety Intelligence & Decision Support System
+              </span>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                SCRB Verified
+              </span>
+            </div>
+            <div className="text-secondary mt-0.5" style={{ fontSize: '0.82rem' }}>
+              Descriptive analytical monitoring for <b>Madurai District & Tamil Nadu State Benchmarks</b> (2021–2024 Annual & 2025 Q1 Provisional).
             </div>
           </div>
         </div>
-        <span className="badge bg-primary text-white px-2 py-1 small">Strictly Descriptive</span>
+        <div className="d-flex align-items-center gap-2">
+          <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+            <i className="bi bi-database-check text-success me-1"></i> 10 Official Datasets
+          </span>
+          <span className="badge bg-primary text-white px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+            Descriptive Mode
+          </span>
+        </div>
       </div>
 
       {/* 2024 Annual KPIs */}
-      <div>
+      <div className="animate-slide-up delay-1">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h3 className="h6 fw-bold text-uppercase text-secondary mb-0" style={{ letterSpacing: '0.5px' }}>
+          <h3 className="h6 fw-bold text-uppercase text-secondary mb-0" style={{ letterSpacing: '0.05em' }}>
             2024 Full-Year Key Performance Indicators
           </h3>
-          <span className="badge bg-secondary-subtle text-secondary small">12 Months (Jan – Dec 2024)</span>
+          <span className="badge bg-secondary-subtle text-secondary small fw-semibold">12 Months (Jan – Dec 2024)</span>
         </div>
         <div className="row g-3">
-          {data.kpis_2024.map((kpi) => (
-            <div className="col-12 col-sm-6 col-xl-3" key={kpi.id}>
-              <KPICard
-                title={kpi.title}
-                value={kpi.value}
-                subtitle={kpi.subtitle}
-                changePercentage={kpi.change_percentage}
-                isPositiveChange={kpi.is_positive_change}
-                trendDirection={kpi.trend_direction}
-                badge={kpi.badge}
-                icon={
-                  kpi.id === 'accidents_2024'
-                    ? 'bi-car-front'
-                    : kpi.id === 'deaths_2024'
-                    ? 'bi-heart-pulse'
-                    : kpi.id === 'injuries_2024'
-                    ? 'bi-bandaid'
-                    : 'bi-percent'
-                }
-              />
-            </div>
-          ))}
+          {data.kpis_2024.map((kpi, idx) => {
+            const variantMap = {
+              accidents_2024: { variant: 'primary', icon: 'bi-activity' },
+              deaths_2024: { variant: 'danger', icon: 'bi-heart-pulse-fill' },
+              injuries_2024: { variant: 'warning', icon: 'bi-bandaid-fill' },
+              severity_rate_2024: { variant: 'purple', icon: 'bi-percent' },
+            };
+            const itemConfig = variantMap[kpi.id] || { variant: 'primary', icon: 'bi-activity' };
+            return (
+              <div className="col-12 col-sm-6 col-xl-3" key={kpi.id}>
+                <KPICard
+                  title={kpi.title}
+                  value={kpi.value}
+                  subtitle={kpi.subtitle}
+                  changePercentage={kpi.change_percentage}
+                  isPositiveChange={kpi.is_positive_change}
+                  trendDirection={kpi.trend_direction}
+                  badge={kpi.badge}
+                  icon={itemConfig.icon}
+                  variant={itemConfig.variant}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* 2025 Q1 Provisional KPIs */}
-      <div>
+      <div className="animate-slide-up delay-2">
         <div className="d-flex justify-content-between align-items-center mb-3">
-          <h3 className="h6 fw-bold text-uppercase text-secondary mb-0" style={{ letterSpacing: '0.5px' }}>
+          <h3 className="h6 fw-bold text-uppercase text-secondary mb-0" style={{ letterSpacing: '0.05em' }}>
             2025 Q1 Provisional Baseline (First Quarter)
           </h3>
-          <span className="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle small">
+          <span className="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle small fw-semibold">
             Provisional Quarter (Jan – Mar 2025)
           </span>
         </div>
         <div className="row g-3">
-          {data.kpis_2025_q1.map((kpi) => (
-            <div className="col-12 col-sm-6 col-xl-3" key={kpi.id}>
-              <KPICard
-                title={kpi.title}
-                value={kpi.value}
-                subtitle={kpi.subtitle}
-                badge={kpi.badge}
-                icon="bi-calendar-check"
-              />
-            </div>
-          ))}
+          {data.kpis_2025_q1.map((kpi, idx) => {
+            const q1Variants = ['primary', 'danger', 'warning', 'purple'];
+            const q1Icons = ['bi-speedometer2', 'bi-heart-pulse', 'bi-bandaid', 'bi-percent'];
+            return (
+              <div className="col-12 col-sm-6 col-xl-3" key={kpi.id}>
+                <KPICard
+                  title={kpi.title}
+                  value={kpi.value}
+                  subtitle={kpi.subtitle}
+                  badge={kpi.badge}
+                  icon={q1Icons[idx % q1Icons.length]}
+                  variant={q1Variants[idx % q1Variants.length]}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
       {/* Charts Row: Multi-Year Trend & Severity Overview */}
-      <div className="row g-4">
+      <div className="row g-4 animate-slide-up delay-3">
         {/* Trend Line Chart */}
         <div className="col-12 col-xl-8">
-          <div className="card h-100 border-0 shadow-sm">
+          <div className="card h-100 border-0 shadow-sm hover-lift">
             <div className="card-header bg-white border-bottom py-3 d-flex justify-content-between align-items-center">
               <div>
                 <h4 className="h6 fw-bold mb-0 text-dark">Multi-Year Accident & Fatality Trend</h4>
-                <span className="small text-muted">Annual comparison: 2021 to 2024 (Madurai District)</span>
+                <span className="small text-secondary">Annual comparison: 2021 to 2024 (Madurai District)</span>
               </div>
-              <span className="badge bg-light text-secondary border">2021 – 2024</span>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle px-2.5 py-1 fw-semibold">2021 – 2024</span>
             </div>
             <div className="card-body p-3 p-lg-4">
               <div style={{ height: '320px', width: '100%' }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={trends?.series || []} margin={{ top: 10, right: 30, left: 10, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-                    <XAxis dataKey="year" stroke="#64748b" />
-                    <YAxis stroke="#64748b" />
+                    <XAxis dataKey="year" stroke="#475569" tick={{ fill: '#334155', fontWeight: 600 }} />
+                    <YAxis stroke="#475569" tick={{ fill: '#334155', fontWeight: 600 }} />
                     <Tooltip
-                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px rgba(0,0,0,0.05)' }}
+                      contentStyle={{ backgroundColor: '#ffffff', borderRadius: '10px', border: '1px solid #cbd5e1', boxShadow: '0 8px 16px rgba(0,0,0,0.08)' }}
                     />
                     <Legend />
                     <Line
                       type="monotone"
                       dataKey="accidents"
                       name="Total Accidents"
-                      stroke="#1e40af"
-                      strokeWidth={3}
-                      activeDot={{ r: 7 }}
+                      stroke="#2563eb"
+                      strokeWidth={3.5}
+                      dot={{ r: 5, fill: '#2563eb', strokeWidth: 2, stroke: '#ffffff' }}
+                      activeDot={{ r: 8 }}
                     />
                     <Line
                       type="monotone"
                       dataKey="fatalities"
                       name="Fatalities (Deaths)"
                       stroke="#dc2626"
-                      strokeWidth={3}
-                      activeDot={{ r: 7 }}
+                      strokeWidth={3.5}
+                      dot={{ r: 5, fill: '#dc2626', strokeWidth: 2, stroke: '#ffffff' }}
+                      activeDot={{ r: 8 }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
               <div className="d-flex justify-content-between align-items-center mt-3 pt-3 border-top small text-secondary">
                 <span>
-                  <i className="bi bi-info-circle me-1"></i> 2024 observed a <b>6.13% drop</b> in total accidents and a <b>14.27% drop</b> in fatalities.
+                  <i className="bi bi-info-circle-fill text-primary me-1"></i> 2024 observed a <b className="text-dark">6.13% drop</b> in total accidents and a <b className="text-dark">14.27% drop</b> in fatalities.
                 </span>
-                <span className="text-muted">Source: SCRB</span>
+                <span className="badge bg-light text-secondary border">Source: SCRB</span>
               </div>
             </div>
           </div>
@@ -196,10 +221,10 @@ const DashboardPage = () => {
 
         {/* Severity Donut Chart */}
         <div className="col-12 col-xl-4">
-          <div className="card h-100 border-0 shadow-sm">
+          <div className="card h-100 border-0 shadow-sm hover-lift">
             <div className="card-header bg-white border-bottom py-3">
               <h4 className="h6 fw-bold mb-0 text-dark">2024 Crash Severity Breakdown</h4>
-              <span className="small text-muted">Total 2,497 Accidents</span>
+              <span className="small text-secondary">Total 2,497 Accidents</span>
             </div>
             <div className="card-body p-3 p-lg-4 d-flex flex-column justify-content-between">
               <div style={{ height: '220px', width: '100%' }}>
@@ -219,7 +244,7 @@ const DashboardPage = () => {
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip contentStyle={{ backgroundColor: '#ffffff', borderRadius: '8px', border: '1px solid #cbd5e1' }} />
                   </PieChart>
                 </ResponsiveContainer>
               </div>

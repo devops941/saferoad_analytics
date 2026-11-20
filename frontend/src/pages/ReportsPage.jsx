@@ -32,26 +32,38 @@ const ReportsPage = () => {
 
   return (
     <div className="d-flex flex-column gap-4">
-      {/* Header Card */}
-      <div className="card border-0 shadow-sm bg-white p-3 p-lg-4">
-        <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+      {/* Executive Scope Header */}
+      <div className="executive-banner p-3 p-lg-3.5 d-flex justify-content-between align-items-center flex-wrap gap-3 animate-slide-up">
+        <div className="d-flex align-items-center gap-3">
+          <div className="icon-badge icon-badge-blue" style={{ width: '44px', height: '44px', fontSize: '1.25rem' }}>
+            <i className="bi bi-file-earmark-pdf"></i>
+          </div>
           <div>
-            <h3 className="h6 fw-bold text-primary mb-1">Official Executive Road Safety Audit Report</h3>
-            <p className="text-secondary small mb-0">
-              Download formal road accident exploration report for Madurai District, Tamil Nadu.
+            <div className="d-flex align-items-center gap-2 mb-1">
+              <h2 className="h6 fw-bold text-dark mb-0" style={{ letterSpacing: '-0.01em', fontSize: '1rem' }}>
+                Official Executive Road Safety Audit & Report Generator
+              </h2>
+              <span className="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-2.5 py-0.5" style={{ fontSize: '0.72rem', fontWeight: 600 }}>
+                ReportLab Engine
+              </span>
+            </div>
+            <p className="text-secondary small mb-0" style={{ fontSize: '0.82rem' }}>
+              Generate and stream formal, publication-ready road accident exploration reports for Madurai District, Tamil Nadu.
             </p>
           </div>
-          <span className="badge bg-primary text-white px-3 py-2">ReportLab Engine</span>
         </div>
+        <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
+          <i className="bi bi-file-earmark-check text-success me-1"></i> SCRB Verified Synthesis
+        </span>
       </div>
 
       {/* Main Download Card */}
-      <div className="card border-0 shadow-sm p-4 p-lg-5 bg-white text-center">
-        <div className="mx-auto bg-primary-subtle text-primary p-3 rounded-circle d-flex align-items-center justify-content-center mb-3" style={{ width: '64px', height: '64px' }}>
-          <i className="bi bi-file-earmark-pdf fs-2"></i>
+      <div className="card border-0 shadow-sm p-4 p-lg-5 bg-white text-center hover-lift animate-slide-up delay-1">
+        <div className="mx-auto icon-badge icon-badge-blue p-3 rounded-circle d-flex align-items-center justify-content-center mb-3 shadow" style={{ width: '70px', height: '70px', fontSize: '2rem' }}>
+          <i className="bi bi-file-earmark-pdf"></i>
         </div>
         <h4 className="h5 fw-bold text-dark mb-1">SafeRoad Analytics – Road Accident Exploration & Severity Audit</h4>
-        <p className="text-secondary small max-w-lg mx-auto mb-4" style={{ maxWidth: '600px' }}>
+        <p className="text-secondary small max-w-lg mx-auto mb-4" style={{ maxWidth: '620px', fontSize: '0.88rem', lineHeight: '1.5' }}>
           Comprehensive executive document containing official multi-year trends (2021–2024), 2024 accident severity breakdown, 2025 Q1 road category analysis, vehicle vulnerability distribution, and rural vs. city hit-and-run comparative findings.
         </p>
 
@@ -62,14 +74,20 @@ const ReportsPage = () => {
         )}
 
         {downloadSuccess && (
-          <div className="alert alert-success py-2 small mb-3 max-w-lg mx-auto" style={{ maxWidth: '500px' }}>
+          <div className="alert alert-success py-2 small mb-3 max-w-lg mx-auto fw-medium" style={{ maxWidth: '500px' }}>
             <i className="bi bi-check-circle me-1"></i> PDF report downloaded successfully!
           </div>
         )}
 
         <div>
           <button
-            className="btn btn-primary btn-lg px-4 py-2 shadow-sm d-inline-flex align-items-center gap-2"
+            className="btn btn-primary btn-lg px-4 py-2.5 shadow d-inline-flex align-items-center gap-2 hover-lift fw-bold"
+            style={{
+              background: 'linear-gradient(135deg, #0284c7 0%, #2563eb 100%)',
+              border: 'none',
+              boxShadow: '0 8px 24px rgba(37, 99, 235, 0.35)',
+              fontSize: '0.95rem',
+            }}
             onClick={handleDownload}
             disabled={downloading}
           >
