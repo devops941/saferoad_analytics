@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, HTTPException
 from typing import Optional
 import pandas as pd
 from app.services.analytics_service import analytics_service
@@ -15,11 +15,23 @@ def get_year_wise_trends():
     return analytics_service.get_trends_analysis()
 
 @router.get("/districts-comparison")
-def get_districts_comparison(year: int = Query(default=2024, ge=2021, le=2024)):
+def get_districts_comparison(year: int = 2024):
     """
     Compares Madurai with other Tamil Nadu districts for a selected year (2021-2024).
     """
-    if year == 2024:
+    # Safe integer parsing
+    try:
+        year_num = int(year)
+    except (ValueError, TypeError):
+        year_num = 2024
+
+    if year_num not in [2021, 2022, 2023, 2024]:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid year '{year}'. Supported comparison years are 2021, 2022, 2023, 2024."
+        )
+
+    if year_num == 2024:
         df = data_loader.get_df("severity_2024")
         records = []
         for _, row in df[df["District"].str.upper() != "TOTAL"].iterrows():
@@ -33,8 +45,8 @@ def get_districts_comparison(year: int = Query(default=2024, ge=2021, le=2024)):
         df = data_loader.get_df("districts_2021_2023")
         records = []
         for _, row in df[df["District"].str.upper() != "TOTAL"].iterrows():
-            acc = row.get(f"Total Accidents {year}")
-            deaths = row.get(f"Total Deaths {year}")
+            acc = row.get(f"Total Accidents {year_num}")
+            deaths = row.get(f"Total Deaths {year_num}")
             try:
                 acc_val = int(float(acc)) if acc != "NA" and pd.notna(acc) else 0
                 death_val = int(float(deaths)) if deaths != "NA" and pd.notna(deaths) else 0
@@ -50,7 +62,7 @@ def get_districts_comparison(year: int = Query(default=2024, ge=2021, le=2024)):
     # Sort by accidents descending
     records_sorted = sorted(records, key=lambda x: x["accidents"], reverse=True)
     return {
-        "year": year,
+        "year": year_num,
         "total_districts": len(records_sorted),
         "rankings": records_sorted
     }

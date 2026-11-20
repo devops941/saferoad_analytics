@@ -206,9 +206,21 @@ const DataExplorerPage = () => {
                       return (
                         <tr key={idx} className={isMadurai ? 'table-primary fw-medium' : ''}>
                           <td className="text-muted small">{rowNum}</td>
-                          {explorerData.columns.map((col) => (
-                            <td key={col}>{row[col] !== null && row[col] !== undefined ? String(row[col]) : '-'}</td>
-                          ))}
+                          {explorerData.columns.map((col) => {
+                            const val = row[col];
+                            const isMissing = val === null || val === undefined || String(val).trim().toUpperCase() === 'NA' || String(val).trim() === '';
+                            return (
+                              <td key={col}>
+                                {isMissing ? (
+                                  <span className="badge bg-light text-secondary border fw-normal" style={{ fontSize: '0.7rem' }}>
+                                    Unavailable
+                                  </span>
+                                ) : (
+                                  String(val)
+                                )}
+                              </td>
+                            );
+                          })}
                         </tr>
                       );
                     })
