@@ -72,6 +72,13 @@ const pageMeta = {
     period: 'Formal Executive Summary',
     badge: 'ReportLab PDF Stream',
   },
+  '/upload': {
+    title: 'Data Ingestion & Dataset Upload',
+    subtitle: 'Upload, validate, and hot-reload updated CSV accident records and road datasets for Madurai District',
+    category: 'Data Management',
+    period: 'CSV Ingestion Engine',
+    badge: 'Upload & Validate',
+  },
   '/safety-tips': {
     title: 'Citizen Road Safety Advisories & Guidelines',
     subtitle: 'Evidence-based defensive driving and commuting guidelines rooted in empirical Madurai crash patterns',

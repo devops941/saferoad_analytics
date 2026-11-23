@@ -117,6 +117,58 @@ export const api = {
     const res = await apiClient.get('/gis/overview');
     return res.data;
   },
+
+  // 11. Data Ingestion & Upload
+  getUploadSchemas: async () => {
+    const res = await apiClient.get('/upload/schemas');
+    return res.data;
+  },
+
+  uploadDatasetFile: async (formData) => {
+    // Native fetch guarantees browser auto-generates exact multipart boundary
+    const response = await fetch(`${API_BASE_URL}/upload/file`, {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      let errorMsg = 'Dataset upload failed.';
+      if (typeof data.detail === 'string') {
+        errorMsg = data.detail;
+      } else if (Array.isArray(data.detail)) {
+        errorMsg = data.detail.map((d) => d.msg || JSON.stringify(d)).join(', ');
+      } else if (data.message) {
+        errorMsg = data.message;
+      }
+      throw new Error(errorMsg);
+    }
+    return data;
+  },
+
+  validateDatasetFile: async (formData) => {
+    const response = await fetch(`${API_BASE_URL}/upload/validate`, {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      let errorMsg = 'Validation request failed.';
+      if (typeof data.detail === 'string') {
+        errorMsg = data.detail;
+      } else if (Array.isArray(data.detail)) {
+        errorMsg = data.detail.map((d) => d.msg || JSON.stringify(d)).join(', ');
+      } else if (data.message) {
+        errorMsg = data.message;
+      }
+      throw new Error(errorMsg);
+    }
+    return data;
+  },
+
+  restoreDefaultDatasets: async () => {
+    const res = await apiClient.post('/upload/restore-defaults');
+    return res.data;
+  },
 };
 
 export default api;

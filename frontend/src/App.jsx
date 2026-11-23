@@ -12,6 +12,7 @@ import DataExplorerPage from './pages/DataExplorerPage.jsx';
 import ReportsPage from './pages/ReportsPage.jsx';
 import SafetyTipsPage from './pages/SafetyTipsPage.jsx';
 import GISRoadMapPage from './pages/GISRoadMapPage.jsx';
+import DataUploadPage from './pages/DataUploadPage.jsx';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="hit-and-run" element={<HitAndRunPage />} />
           <Route path="safety-tips" element={<SafetyTipsPage />} />
           <Route path="explorer" element={<DataExplorerPage />} />
+          <Route path="upload" element={<DataUploadPage />} />
           <Route path="reports" element={<ReportsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../services/api.js';
 import LoadingSpinner from '../components/LoadingSpinner.jsx';
 import ErrorAlert from '../components/ErrorAlert.jsx';
@@ -99,6 +100,13 @@ const DataExplorerPage = () => {
           </div>
         </div>
         <div className="d-flex align-items-center gap-2">
+          <Link
+            to="/upload"
+            className="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1.5 shadow-sm px-3 py-1.5 rounded-3 hover-lift fw-semibold"
+            style={{ fontSize: '0.82rem' }}
+          >
+            <i className="bi bi-cloud-arrow-up-fill"></i> Upload / Ingest CSV
+          </Link>
           <span className="badge bg-light text-secondary border px-2.5 py-1.5 shadow-sm" style={{ fontSize: '0.75rem', fontWeight: 600 }}>
             <i className="bi bi-database text-primary me-1"></i> 10 Official Datasets
           </span>

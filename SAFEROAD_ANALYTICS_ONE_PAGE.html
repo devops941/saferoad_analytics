@@ -7,7 +7,7 @@
   <style>
     @page {
       size: A4;
-      margin: 15mm;
+      margin: 14mm;
     }
     * {
       box-sizing: border-box;
@@ -18,15 +18,15 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: #1a202c;
       background: #ffffff;
-      line-height: 1.4;
-      font-size: 11.5px;
-      padding: 25px 35px;
+      line-height: 1.38;
+      font-size: 11.2px;
+      padding: 20px 30px;
       max-width: 800px;
       margin: 0 auto;
     }
     .header {
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .title {
       font-size: 22px;
@@ -36,36 +36,36 @@
       margin-bottom: 2px;
     }
     .subtitle {
-      font-size: 11.5px;
+      font-size: 11px;
       font-style: italic;
       color: #4a5568;
     }
     .section-title {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 800;
       color: #1e3a8a;
       letter-spacing: 0.4px;
-      margin-top: 10px;
+      margin-top: 9px;
       margin-bottom: 3px;
       text-transform: uppercase;
     }
     p {
       text-align: justify;
       color: #2d3748;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .objectives {
       text-align: justify;
       color: #2d3748;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     ul {
       list-style-type: none;
       padding-left: 0;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     li {
-      margin-bottom: 3px;
+      margin-bottom: 2.5px;
       color: #2d3748;
       position: relative;
       padding-left: 14px;
@@ -79,7 +79,7 @@
       font-weight: bold;
     }
     .tech-grid {
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .tech-item {
       margin-bottom: 2px;
@@ -89,10 +89,10 @@
       color: #1a202c;
     }
     .links-section {
-      margin-top: 8px;
-      padding-top: 6px;
+      margin-top: 7px;
+      padding-top: 5px;
       border-top: 1px solid #e2e8f0;
-      font-size: 11px;
+      font-size: 10.8px;
     }
     .links-section a {
       color: #2563eb;
@@ -127,7 +127,7 @@
 
   <div class="section-title">PROJECT OBJECTIVES</div>
   <div class="objectives">
-    Analyze empirical multi-year accident trends for Madurai District (2021–2025). &bull; Perform frequency tables, cross-tabulation, and percentage analysis on road and vehicle casualties. &bull; Model 15 verified Madurai highway corridors on an interactive GIS map. &bull; Maintain 100% data integrity with zero synthetic coordinates. &bull; Provide commuter safety advisories and emergency golden-hour assistance. &bull; Generate downloadable executive PDF audit reports.
+    Analyze empirical multi-year accident trends for Madurai District (2021–2025). &bull; Perform frequency tables, cross-tabulation, and percentage analysis on road and vehicle casualties. &bull; Model 15 verified Madurai highway corridors on an interactive GIS map. &bull; Maintain 100% data integrity with zero synthetic coordinates. &bull; Ingest and validate updated CSV datasets with automatic backup and hot-reloading. &bull; Provide commuter safety advisories and emergency golden-hour assistance. &bull; Generate downloadable executive PDF audit reports.
   </div>
 
   <div class="section-title">KEY MODULES & FEATURES</div>
@@ -139,16 +139,18 @@
     <li><strong>Hit & Run Analysis:</strong> Jurisdictional comparison between Madurai Rural Police and Madurai City Police Commissionerate.</li>
     <li><strong>Interactive GIS Road Map:</strong> React-Leaflet OpenStreetMap engine mapping 15 verified highway corridors (492.6 km) with road layer toggles and casualty side panel.</li>
     <li><strong>Citizen Safety Advisories:</strong> Commuter speed limits, helmet/seatbelt guidelines, Golden Hour rescue protocols, and emergency helpline numbers (108, 1033, 112).</li>
+    <li><strong>Dataset Upload & Ingestion Engine:</strong> Real-time CSV validation, automatic schema detection, automatic timestamped backups, Madurai subset synchronization, and cache hot-reloading.</li>
     <li><strong>Data Explorer & PDF Audit Reports:</strong> Full raw dataset viewer with automated, downloadable formal PDF reports via ReportLab.</li>
   </ul>
 
   <div class="section-title">TECHNOLOGY STACK</div>
   <div class="tech-grid">
     <div class="tech-item"><span class="tech-label">Frontend:</span> React.js 18, Vite, Bootstrap 5.3, React-Bootstrap, Recharts, Modern Glassmorphism UI</div>
-    <div class="tech-item"><span class="tech-label">Backend:</span> Python 3.12, FastAPI, Uvicorn, Pydantic</div>
+    <div class="tech-item"><span class="tech-label">Backend:</span> Python 3.12, FastAPI, Uvicorn, Pydantic, Python-Multipart</div>
     <div class="tech-item"><span class="tech-label">Data Analytics Engine:</span> Pandas 2.2, NumPy 2.2, Matplotlib 3.10</div>
     <div class="tech-item"><span class="tech-label">GIS & Mapping:</span> Leaflet, React-Leaflet, OpenStreetMap, GeoJSON Vector Layers</div>
     <div class="tech-item"><span class="tech-label">Reporting & Export:</span> ReportLab PDF Generation</div>
+    <div class="tech-item"><span class="tech-label">Testing & Verification:</span> Automated Diagnostic Test Suite (<code>backend/test_backend.py</code> - 15/15 tests passing)</div>
     <div class="tech-item"><span class="tech-label">Exploratory Data Analysis (EDA):</span> Standalone Python Script (<code>eda_analysis.py</code>)</div>
   </div>
 

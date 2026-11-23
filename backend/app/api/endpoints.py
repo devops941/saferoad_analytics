@@ -11,6 +11,7 @@ from app.api.routes import (
     reports_router,
     safety_tips_router,
     gis_router,
+    upload_router,
 )
 
 router = APIRouter()
@@ -49,3 +50,4 @@ router.include_router(hit_and_run_router)
 router.include_router(reports_router)
 router.include_router(safety_tips_router)
 router.include_router(gis_router)
+router.include_router(upload_router)

@@ -30,6 +30,7 @@ const navGroups = [
     category: 'Data & Reporting',
     items: [
       { path: '/explorer', label: 'Data Explorer', icon: 'bi-table', themeColor: '#4f46e5' },
+      { path: '/upload', label: 'Dataset Upload & Ingestion', icon: 'bi-cloud-arrow-up-fill', themeColor: '#059669', badge: 'NEW' },
       { path: '/reports', label: 'Audit Reports & PDF', icon: 'bi-file-earmark-pdf-fill', themeColor: '#e11d48' },
     ],
   },

@@ -1,4 +1,12 @@
 import os
+import sys
+from pathlib import Path
+
+# Ensure backend directory is in sys.path for universal terminal execution
+BACKEND_DIR = Path(__file__).resolve().parent
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import PROJECT_NAME, API_V1_PREFIX, CORS_ORIGINS

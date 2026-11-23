@@ -7,6 +7,7 @@ from app.api.routes.hit_and_run import router as hit_and_run_router
 from app.api.routes.reports import router as reports_router
 from app.api.routes.safety_tips import router as safety_tips_router
 from app.api.routes.gis import router as gis_router
+from app.api.routes.upload import router as upload_router
 
 __all__ = [
     "dashboard_router",
@@ -18,4 +19,5 @@ __all__ = [
     "reports_router",
     "safety_tips_router",
     "gis_router",
+    "upload_router",
 ]
